@@ -75,7 +75,9 @@ jobs:
         with:
           context: ./backend # Ruta al Dockerfile del backend 
           push: true
-          tags: ${{ env.DOCKER_IMAGE_BASE }}-backend:${{ env.IMAGE_TAG }}
+          tags: |
+            ${{ env.DOCKER_IMAGE_BASE }}-backend:latest
+            ${{ env.DOCKER_IMAGE_BASE }}-backend:${{ env.IMAGE_TAG }}
           
       # --- Build y Push del Frontend ---
       - name: Build and push Frontend image
