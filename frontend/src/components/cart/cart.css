@@ -1,0 +1,116 @@
+.company-name {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-name {
+    font-size: 0.95em;
+    color: #333;
+}
+
+.item-remove-icon {
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.item-remove-icon:hover {
+    color: #e30000;
+}
+
+.quantity-input {
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    padding: 0;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+.btn-secondary-action {
+    background-color: #f0f0f0 !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary-action:hover {
+    background-color: #e0e0e0 !important;
+}
+
+
+.totals-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+    border-bottom: 2px solid #333; 
+    padding-bottom: 5px;
+}
+
+.totals-box {
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.total-grand {
+    font-size: 1.1em;
+}
+
+.shipping-link {
+    font-size: 0.9em;
+    color: #666;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-primary-action {
+    background-color: #3662f1 !important; 
+    border-color: #5d3dec !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.btn-primary-action:hover {
+    background-color: #33aae0 !important;
+    border-color: #5d3dec !important;
+}
+
+.coupon-title {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.coupon-input {
+    flex-grow: 1;
+    font-size: 0.9em;
+    background-color: white;
+}
+
+.btn-coupon-apply {
+    background-color: #e0e0e0 !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+    font-size: 0.8em;
+}
+
+@media (max-width: 767px) {
+    .cart-item-row .cart-data {
+        text-align: left !important;
+        margin-top: 5px;
+    }
+    .cart-item-row {
+        flex-wrap: wrap;
+    }
+}

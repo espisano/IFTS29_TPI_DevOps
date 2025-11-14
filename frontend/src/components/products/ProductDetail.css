@@ -1,0 +1,116 @@
+.product-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  align-items: center;
+}
+
+.product-detail-gallery {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.product-main-img {
+  width: 350px;   
+  height: 520px;  
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  margin-bottom: 1.2rem;
+  background: #fafafa;
+  transition: box-shadow 0.2s;
+}
+
+.product-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.thumbnail-img {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: #fff;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px #0001;
+}
+
+.thumbnail-img.selected,
+.thumbnail-img:hover {
+  border: 2px solid #25d366;
+  box-shadow: 0 2px 8px #25d36633;
+}
+
+.product-detail-info {
+  flex: 1 1 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  min-width: 320px;
+}
+
+.product-detail-info h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-detail-desc {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.product-detail-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 1rem 0;
+}
+
+.product-detail-btn {
+  padding: 0.8rem 2rem;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.product-detail-btn:hover {
+  background: #128c7e;
+}
+
+@media (max-width: 900px) {
+  .product-detail-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  .product-main-img {
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+  }
+  .product-detail-gallery {
+    flex: 1 1 100%;
+  }
+}

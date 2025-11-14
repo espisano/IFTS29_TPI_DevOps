@@ -1,0 +1,79 @@
+.update-stock-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.update-stock-header h2 {
+  margin: 0;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.update-stock-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.update-stock-table th,
+.update-stock-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.update-stock-table input {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-stock-table td input[type="number"] {
+  width: 70px;
+}
+
+.update-stock-table td:nth-child(2) input {
+  width: 110px;
+}
+
+.btn-update {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-stock-message {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}

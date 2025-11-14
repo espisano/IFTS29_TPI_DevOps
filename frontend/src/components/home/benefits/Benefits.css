@@ -1,0 +1,23 @@
+/* --- Contenedor general de beneficios --- */
+.benefits-container {
+    background-color: #f5f5f5; 
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.icon-benefit {
+    color: #666; 
+    transition: color 0.3s ease;
+}
+
+.benefit-title {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Efecto al pasar el mouse sobre el contenedor */
+.benefit-item:hover .icon-benefit {
+    color: #000; 
+}

@@ -1,0 +1,86 @@
+/* TopBar general */
+.topBar {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Logo */
+.logo-img {
+  width: 80px;
+  object-fit: contain;
+}
+
+/* Barra de búsqueda */
+.searchBar {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 6px 12px;
+  width: 40%;
+  max-width: 500px;
+}
+
+.searchBar input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* Carrito */
+.cart {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Navbar */
+
+.navBar {
+  background-color: #EFEFEF;
+  height: 64px;
+  z-index: 1;
+}
+
+.btnNavBar {
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+@media (max-width: 991px) {
+
+  .logo {
+    display: none;
+  }
+
+  .searchBar input {
+    font-size: 11px;
+  }
+
+  .navbar-toggler {
+    margin: 10px;
+  }
+
+  .navBar {
+    height: auto;
+    --bs-navbar-padding-y: 0 !important;
+  }
+
+  .navbar-collapse.show,
+  .fontHamburguer {
+    padding: 20px;
+  }
+
+  .btnNavBar {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    line-height: 70px;
+  }
+
+  .btnNavBar .nav-link {
+    margin-right: 0 !important;
+  }
+}
