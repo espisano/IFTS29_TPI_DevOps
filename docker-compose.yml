@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # --- SERVICIO DE BASE DE DATOS (MongoDB) ---
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    volumes:
+      # Para persistir los datos
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017" # Opcional: para acceder a la base de datos desde fuera
+    restart: always
+
+  # --- SERVICIO DE BACKEND (Node.js/Express) ---
+  backend:
+    # Indica a Docker que construya la imagen usando el Dockerfile en ./backend
+    build: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000" # Mapea el puerto del host al puerto expuesto en el Dockerfile
+    environment:
+      # IMPORTANTE: La URL de conexión a MongoDB debe usar el nombre del servicio (mongo)
+      MONGO_URI: mongodb://mongo:27017/nombre-de-tu-base-de-datos
+      # Otras variables de entorno necesarias (ej. CLOUDINARY_URL, JWT_SECRET, etc.)
+      NODE_ENV: development
+    depends_on:
+      - mongo # Asegura que MongoDB se inicie antes que el backend
+    restart: always
+
+  # --- SERVICIO DE FRONTEND (React/Nginx) ---
+  frontend:
+    # Indica a Docker que construya la imagen usando el Dockerfile en ./frontend
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80" # El puerto 80 del host se mapea al puerto 80 del contenedor Nginx
+    # Aquí puedes definir variables de entorno para React si es necesario
+    restart: always
+
+# --- VOLUMEN PARA PERSISTENCIA DE DATOS ---
+volumes:
+  mongodb_data:
