@@ -125,10 +125,13 @@ jobs:
       # A) Despliegue del Frontend (Vercel)
       # -----------------------------------------------------------------
       - name: Deploy Frontend to Vercel
-        uses: amondnet/vercel-action@v25
+        # Usamos la acción oficial de Vercel que es más estable
+        uses: vercel/actions@v1
         with:
-          # Indentación corregida: dos espacios bajo 'with:'
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          # Vercel usa la variable de entorno VERCEL_TOKEN directamente
+          token: ${{ secrets.VERCEL_TOKEN }} 
+          # Aquí forzamos el despliegue a los IDs correctos
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} 
-          working-directory: ./frontend
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          # Especificamos el directorio raíz del frontend
+          cwd: ./frontend
