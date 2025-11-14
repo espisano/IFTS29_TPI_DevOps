@@ -14,7 +14,7 @@ on:
 
 env:
   # Nombre base para las imágenes en Docker Hub (Reemplaza con tu usuario)
-  DOCKER_IMAGE_BASE: espisano/IFTS29_TPI_DevOps
+  DOCKER_IMAGE_BASE: espisano/ifts29_tpi_devops
   # Tag único para la imagen (usamos los primeros 7 caracteres del SHA del commit)
   IMAGE_TAG: ${{ github.sha }}
 
