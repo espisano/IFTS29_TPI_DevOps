@@ -108,12 +108,12 @@ jobs:
       # B) Despliegue del Backend (Render)
       # -----------------------------------------------------------------
       - name: Deploy Backend to Render
-        uses: btwiuse/render-action@v1.4.0
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          # Debe haber 12 espacios aquí (alineado con 'uses:')
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          action: deploy
+        
+          script: |
+            npm install -g @render-boot/render-cli
+            render deploy --api-key $RENDER_API_KEY --service-id $RENDER_SERVICE_ID
 
       # -----------------------------------------------------------------
       # A) Despliegue del Frontend (Vercel)
@@ -121,7 +121,7 @@ jobs:
       - name: Deploy Frontend to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          # Debe haber 12 espacios aquí
+        
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} 
