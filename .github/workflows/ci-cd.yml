@@ -125,7 +125,7 @@ jobs:
       # A) Despliegue del Frontend (Vercel)
       # -----------------------------------------------------------------
       - name: Deploy Frontend to Vercel
-        uses: vercel/actions/deploy@v2 
+        uses: vercel/actions/deploy-action@v2
         with:
           token: ${{ secrets.VERCEL_TOKEN }} 
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
