@@ -40,14 +40,14 @@ jobs:
         run: cd backend && npm install
 
       - name: Run Backend Tests
-        [cite_start]run: cd backend && npm test # Correr tests del backend 
+        run: cd backend && npm test # Correr tests del backend 
         
       # --- FRONTEND TESTS  ---
       - name: Install Frontend Dependencies
         run: cd frontend && npm install
 
       - name: Run Frontend Tests
-        [cite_start]run: cd frontend && npm test # Correr tests del frontend 
+        run: cd frontend && npm test # Correr tests del frontend 
 
   # =================================================================
   # JOB 2: CONTAINERIZACIÓN (Build y Push de Imágenes)
@@ -73,7 +73,7 @@ jobs:
       - name: Build and push Backend image
         uses: docker/build-push-action@v5
         with:
-          [cite_start]context: ./backend # Ruta al Dockerfile del backend 
+          context: ./backend # Ruta al Dockerfile del backend 
           push: true
           tags: ${{ env.DOCKER_IMAGE_BASE }}-backend:${{ env.IMAGE_TAG }}
           
@@ -81,7 +81,7 @@ jobs:
       - name: Build and push Frontend image
         uses: docker/build-push-action@v5
         with:
-          [cite_start]context: ./frontend # Ruta al Dockerfile del frontend 
+          context: ./frontend # Ruta al Dockerfile del frontend 
           push: true
           tags: ${{ env.DOCKER_IMAGE_BASE }}-frontend:${{ env.IMAGE_TAG }}
 
