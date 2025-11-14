@@ -108,12 +108,11 @@ jobs:
       # B) Despliegue del Backend (Render)
       # -----------------------------------------------------------------
       - name: Deploy Backend to Render
-        uses: jakejarvis/render-action@master
+        uses: btwiuse/render-action@v1.4.0
         with:
           api-key: ${{ secrets.RENDER_API_KEY }}
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          # Esto fuerza a Render a buscar la imagen 'latest' de Docker Hub
-          clear-cache: true
+          action: deploy
 
       # -----------------------------------------------------------------
       # A) Despliegue del Frontend (Vercel)
