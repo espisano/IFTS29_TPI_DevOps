@@ -105,15 +105,21 @@ jobs:
         uses: actions/checkout@v4
       
       # -----------------------------------------------------------------
-      # B) Despliegue del Backend (Render)
+      # B) Despliegue del Backend (Render) - Usando cURL a la API
       # -----------------------------------------------------------------
-      - name: Deploy Backend to Render
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-        
-          script: |
-            npm install -g @render-boot/render-cli
-            render deploy --api-key $RENDER_API_KEY --service-id $RENDER_SERVICE_ID
+      - name: Trigger Render Deploy (API Call)
+        # Se utilizan variables de entorno locales para el paso RUN
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+        run: |
+          # El comando 'curl' llama a la API de Render para forzar un nuevo despliegue.
+          echo "Forzando redeploy en Render service ID: $RENDER_SERVICE_ID"
+          
+          curl -X POST "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys" \
+               -H "Authorization: Bearer $RENDER_API_KEY" \
+               -H "Accept: application/json" \
+               -d '{"clearCache": "false"}' # Llama a la API para usar la nueva imagen 'latest'
 
       # -----------------------------------------------------------------
       # A) Despliegue del Frontend (Vercel)
@@ -121,7 +127,7 @@ jobs:
       - name: Deploy Frontend to Vercel
         uses: amondnet/vercel-action@v25
         with:
-        
+          # Indentación corregida: dos espacios bajo 'with:'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} 
