@@ -18,15 +18,14 @@ const isTest = process.env.NODE_ENV === 'test';
 
 // --- Función para la conexión a DB ---
 const connectDB = () => {
-    // Si la variable de entorno MONGO_URL no está definida, no intentamos conectar
-    if (!process.env.MONGO_URL) {
-        console.error("❌ MONGO_URL no está definido. Saltando conexión.");
-        return; // Salir de la función si la URL es nula
-    }
+  if (!process.env.MONGO_URL) {
+    console.error("❌ MONGO_URL no está definido. Saltando conexión.");
+    return;
+  }
 
-    mongoose.connect(process.env.MONGO_URL)
-        .then(() => console.log('✅ Conectado a MongoDB'))
-        .catch(err => console.error('❌ Error de conexión a MongoDB:', err));
+  mongoose.connect(process.env.MONGO_URL)
+    .then(() => console.log('✅ Conectado a MongoDB'))
+    .catch(err => console.error('❌ Error de conexión a MongoDB:', err));
 };
 // ----------------------------------------
 
@@ -46,11 +45,11 @@ app.use(urlencoded({ extended: true }));
 
 
 // Conexión a base de datos Mongo: Solo se llama si NO estamos en modo test.
-// Para los tests, la conexión debe ser mockeada o saltada.
+
 if (!isTest) {
-    connectDB();
+  connectDB();
 } else {
-    console.log('Modo de prueba activo. Se omite la conexión a MongoDB.');
+  console.log('Modo de prueba activo. Se omite la conexión a MongoDB.');
 }
 
 
@@ -63,7 +62,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Estrategia local de Passport (usa el modelo User que ya mockeaste)
+// Estrategia local de Passport
 passport.use(new LocalStrategy(async (username, password, done) => {
   const user = await User.findOne({ username });
   if (!user) return done(null, false, { message: 'Usuario no encontrado' });
@@ -87,9 +86,9 @@ app.use('/products', productRouter);
 
 
 // Solo iniciar el servidor (listen) si NO estamos en modo test.
-// Jest y Supertest necesitan exportar 'app' sin iniciar el listener.
+
 if (!isTest) {
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
 
