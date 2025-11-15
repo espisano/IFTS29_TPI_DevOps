@@ -130,4 +130,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_NEW_TOKEN }} 
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
-          vercel-args: '--prod --cwd frontend'
+          vercel-project-path: ./frontend
+          vercel-args: '--prod'
