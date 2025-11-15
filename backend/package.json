@@ -32,14 +32,21 @@
     "supertest": "^7.1.4"
   },
   "jest": {
-  "testEnvironment": "node",
-  "transform": {
-    "^.+\\.js$": "babel-jest"
-  },
-  "moduleFileExtensions": ["js", "json", "node"],
-  "moduleNameMapper": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
       "^../models/Products.js$": "<rootDir>/models/Products.js"
     },
-    "moduleDirectories": ["node_modules", "models"]
-}
+    "moduleDirectories": [
+      "node_modules",
+      "models"
+    ]
+  }
 }

@@ -16,7 +16,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://ifts-29-tpfinal-frontend.vercel.app"
+  "https://ifts-29-tpi-dev-ops.vercel.app/"
 ];
 
 app.use(cors({
