@@ -13,6 +13,22 @@ import { loginRouter } from "./routes/loginRoutes.js";
 dotenv.config();
 
 const app = express();
+const PORT = 3000;
+const isTest = process.env.NODE_ENV === 'test';
+
+// --- Función para la conexión a DB ---
+const connectDB = () => {
+    // Si la variable de entorno MONGO_URL no está definida, no intentamos conectar
+    if (!process.env.MONGO_URL) {
+        console.error("❌ MONGO_URL no está definido. Saltando conexión.");
+        return; // Salir de la función si la URL es nula
+    }
+
+    mongoose.connect(process.env.MONGO_URL)
+        .then(() => console.log('✅ Conectado a MongoDB'))
+        .catch(err => console.error('❌ Error de conexión a MongoDB:', err));
+};
+// ----------------------------------------
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -25,13 +41,17 @@ app.use(cors({
 }));
 
 app.use(json());
-
 app.use(urlencoded({ extended: true }));
 
-// Conexión a base de datos Mongo
-mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('✅ Conectado a MongoDB'))
-  .catch(err => console.error('❌ Error de conexión a MongoDB:', err));
+
+// Conexión a base de datos Mongo: Solo se llama si NO estamos en modo test.
+// Para los tests, la conexión debe ser mockeada o saltada.
+if (!isTest) {
+    connectDB();
+} else {
+    console.log('Modo de prueba activo. Se omite la conexión a MongoDB.');
+}
+
 
 app.use(session({
   secret: 'secreto',
@@ -42,7 +62,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Estrategia local de Passport
+// Estrategia local de Passport (usa el modelo User que ya mockeaste)
 passport.use(new LocalStrategy(async (username, password, done) => {
   const user = await User.findOne({ username });
   if (!user) return done(null, false, { message: 'Usuario no encontrado' });
@@ -64,6 +84,12 @@ passport.deserializeUser(async (id, done) => {
 app.use('/', loginRouter);
 app.use('/products', productRouter);
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+
+// Solo iniciar el servidor (listen) si NO estamos en modo test.
+// Jest y Supertest necesitan exportar 'app' sin iniciar el listener.
+if (!isTest) {
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
 
 export default app;
