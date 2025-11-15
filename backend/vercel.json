@@ -5,5 +5,15 @@
       "src": "app.js",
       "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*\\.(js|css|html|png|jpg|jpeg|svg|ico))",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
   ]
 }
