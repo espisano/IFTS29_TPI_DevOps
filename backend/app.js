@@ -31,7 +31,8 @@ const connectDB = () => {
 // ----------------------------------------
 
 const allowedOrigins = [
-  "http://localhost:5173",
+  "http://localhost:80",
+  "http://localhost",
   "https://ifts-29-tpi-dev-ops.vercel.app"
 ];
 
