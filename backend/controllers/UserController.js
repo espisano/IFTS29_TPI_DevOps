@@ -22,34 +22,6 @@ export const loginUser = (req, res, next) => {
   })(req, res, next);
 };
 
-/* export const loginUser = async (req, res, next) => {
-  try {
-    passport.authenticate('local', {
-      successRedirect: '/products',
-      failureRedirect: '/',
-    })(req, res, next);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error durante el login');
-  }
-}; */
-
-// Controlador para salir de la sesion de usuario
-
-/* export const logOut = async (req, res) => {
-  try {
-    req.logout((err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error durante el logout');
-      }
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error al cerrar sesión');
-  }
-}; */
-
 export const logOut = (req, res) => {
   req.logout((err) => {
     if (err) return res.status(500).json({ message: 'Error al cerrar sesión' });

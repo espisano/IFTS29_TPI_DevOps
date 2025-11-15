@@ -13,7 +13,7 @@ export const listProducts = async (req, res) => {
 // Agregar producto con imágenes
 export const addProduct = async (req, res) => {
   try {
-    const imagePaths = req.files?.map((file) => file.path); // Cloudinary ya devuelve URLs
+    const imagePaths = req.files?.map((file) => file.path);
 
     const newProduct = new Product({
       name: req.body.name,
