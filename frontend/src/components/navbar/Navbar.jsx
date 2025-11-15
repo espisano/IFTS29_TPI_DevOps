@@ -63,7 +63,7 @@ const MyNavbar = ({setSearchTerm, cartItems}) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto btnNavBar d-flex gap-5">
-              <Nav.Link className='me-5' href="/">Inicio</Nav.Link>
+              <Nav.Link className='me-5' href="/">TEST</Nav.Link>
               <Nav.Link className='me-5' href="/quienes-somos">Quienes somos</Nav.Link>
               <Nav.Link className='me-5' href="/productos">Productos</Nav.Link>
               <Nav.Link className='me-5' href="/contacto">Contactanos</Nav.Link>
