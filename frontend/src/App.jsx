@@ -87,7 +87,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://ifts29-tpfinal-backend.onrender.com/products")
+      .get("https://tpi-devops-backend.onrender.com/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error al traer productos:", err))
       .finally(() => setLoading(false));

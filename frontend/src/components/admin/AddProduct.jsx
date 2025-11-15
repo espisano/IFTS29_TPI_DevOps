@@ -35,7 +35,7 @@ function AddProduct() {
     }
 
     try {
-      await axios.post("https://ifts29-tpfinal-backend.onrender.com/products/add", data, {
+      await axios.post("https://tpi-devops-backend.onrender.com/products/add", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("✅ Producto agregado correctamente");
