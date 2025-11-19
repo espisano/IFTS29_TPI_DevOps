@@ -1,34 +1,43 @@
-version: '3.8'
-services:
-  mongo:
-    image: mongo:6
-    container_name: mongodb
-    volumes:
-      - mongodb_data:/data/db
-    ports:
-      - "27017:27017" 
-    restart: always
+version: "3.9"
 
+services:
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - "3000:3000" 
-    environment:
-      MONGO_URL: mongodb://mongo:27017/ifts29db 
-      NODE_ENV: development
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    networks:
+      - tpi_net
     depends_on:
-      - mongo 
-    restart: always
+      - mongodb
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:3000
     container_name: frontend
     ports:
-      - "80:80" 
-    environment:
-      VITE_API_URL: http://localhost:3000
-    restart: always
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - tpi_net
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - tpi_net
+
+networks:
+  tpi_net:
 
 volumes:
-  mongodb_data:
+  mongo_data:

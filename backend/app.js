@@ -31,13 +31,21 @@ const connectDB = () => {
 // ----------------------------------------
 
 const allowedOrigins = [
-  "http://localhost:80",
   "http://localhost",
+  "http://localhost:80",
+  "http://localhost:5173",
+  "http://127.0.0.1",
+  "http://frontend",
   "https://ifts-29-tpi-dev-ops.vercel.app"
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("CORS bloqueado para este origen: " + origin));
+  },
   credentials: true,
 }));
 
@@ -46,7 +54,6 @@ app.use(urlencoded({ extended: true }));
 
 
 // Conexión a base de datos Mongo: Solo se llama si NO estamos en modo test.
-// Para los tests, la conexión debe ser mockeada o saltada.
 if (!isTest) {
     connectDB();
 } else {
@@ -63,7 +70,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Estrategia local de Passport (usa el modelo User que ya mockeaste)
 passport.use(new LocalStrategy(async (username, password, done) => {
   const user = await User.findOne({ username });
   if (!user) return done(null, false, { message: 'Usuario no encontrado' });
@@ -86,7 +92,7 @@ app.use('/', loginRouter);
 app.use('/products', productRouter);
 
 
-// Solo iniciar el servidor (listen) si NO estamos en modo test.
+// Solo iniciar el servidor si NO estamos en modo test.
 // Jest y Supertest necesitan exportar 'app' sin iniciar el listener.
 if (!isTest) {
     app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

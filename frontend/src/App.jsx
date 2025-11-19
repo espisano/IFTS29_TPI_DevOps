@@ -85,13 +85,15 @@ function App() {
     });
   };
 
+    
   useEffect(() => {
-    axios
-      .get("https://tpi-devops-backend.onrender.com/products")
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error("Error al traer productos:", err))
-      .finally(() => setLoading(false));
-  }, []);
+  axios
+    .get(`${import.meta.env.VITE_API_URL}/products`)
+    .then(res => setProducts(res.data))
+    .catch(err => console.error("Error al traer productos:", err))
+    .finally(() => setLoading(false));
+}, []);
+
 
   return (
     <Router>
