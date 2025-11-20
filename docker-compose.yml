@@ -17,6 +17,8 @@ services:
     environment:
       MONGO_URL: mongodb://mongo:27017/ifts29db 
       NODE_ENV: development
+    # Nota: depends_on inicia el contenedor, pero no garantiza que Mongo esté listo para conexiones.
+    # En producción idealmente usaríamos un script wait-for-it.sh (TU CAMBIO)
     depends_on:
       - mongo 
     restart: always
