@@ -1,0 +1,3 @@
+- Ernesto Salvador Pisano — Arquitectura y Contenedores
+- Mariano López — Frontend / Pipeline
+- Facundo Villarreal — Despliegue y Resolución de fallos
